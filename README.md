@@ -6,3 +6,4 @@ This is a collection of games made by students at SVA.
 - [Sky Theater](exports/SkyTheater/)
 - [Wonder Museum Story](exports/WonderMuseumStory/)
 - [A Day in Prison](exports/Prison/)
+- [Get Down Stay Cool](exports/GetDownStayCool/)
