@@ -10,7 +10,8 @@
       system = "x86_64-linux";
       modules = [
         # Now this works because nixpkgs.path actually exists:
-        "${nixpkgs.path}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+        # "${nixpkgs.path}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+        (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
         ./additional-config.nix
       ];
     };
