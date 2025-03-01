@@ -1,23 +1,21 @@
 {
   description = "Nix Arcade ISO Generator";
 
+  # Switch to a flake-based nixpkgs release, e.g. nixos-22.11:
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
 
   outputs = { self, nixpkgs }:
-    {
-      nixosConfigurations.live = let
-        # "legacyPackages.x86_64-linux" is the normal package set for x86_64
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      in pkgs.lib.nixosSystem {
+  {
+    nixosConfigurations.live =
+      nixpkgs.nixosSystem {
         system = "x86_64-linux";
 
+        # 'nixosModules.installer.cd-dvd.installation-cd-minimal'
+        # is a flake-provided module for building a minimal ISO
         modules = [
-          # Pull in the minimal ISO module directly from nixpkgs' flake:
-          pkgs.nixosModules.installer.cd-dvd.installation-cd-minimal
-
-          # Your own config file
+          nixpkgs.nixosModules.installer.cd-dvd.installation-cd-minimal
           ./additional-config.nix
         ];
       };
-    };
+  };
 }
