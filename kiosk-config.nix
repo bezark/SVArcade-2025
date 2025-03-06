@@ -38,13 +38,13 @@
    program = pkgs.writeShellScriptBin "kiosk-launch" ''
       #!/usr/bin/env bash
       # Try to update the repository, or clone it if the folder does not exist.
-      if [ -d "/home/svarcade/SVAcrcade-2025/.git" ]; then
-        ${pkgs.git}/bin/git -C /home/svarcade/SVAcrcade-2025 pull || true
+      if [ -d "/home/svarcade/SVArcade-2025/.git" ]; then
+        ${pkgs.git}/bin/git -C /home/svarcade/SVArcade-2025 pull || true
       else
-        ${pkgs.git}/bin/git clone https://github.com/bezark/SVArcade-2025.git /home/svarcade/SVAcrcade-2025 || true
+        ${pkgs.git}/bin/git clone https://github.com/bezark/SVArcade-2025.git /home/svarcade/SVArcade-2025 || true
       fi
       # Now launch the Godot project.
-      exec ${pkgs.godot_4}/bin/godot4 --path /home/svarcade/SVAcrcade-2025/
+      exec ${pkgs.godot_4}/bin/godot4 --path /home/svarcade/SVArcade-2025/
     '';
 
     
