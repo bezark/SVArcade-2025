@@ -36,7 +36,7 @@
     startAt = "hourly";
 
     repository = "git@github.com:bezark/SVArcade-2025.git";
-    nixFile = "kiosk-config.nix";
+    nixFile = "/kiosk-config.nix";
     nixAttribute = "system";
     # sshKeyFile = "${config.users.users.gaetan.home}/.ssh/rsa_server";
   };
