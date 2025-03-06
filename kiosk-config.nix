@@ -30,25 +30,35 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  services.self-deploy = {
+    enable = true;
+
+    startAt = "hourly";
+
+    repository = "git@github.com:bezark/SVArcade-2025.git";
+    nixFile = "kiosk-config.nix";
+    nixAttribute = "system";
+    # sshKeyFile = "${config.users.users.gaetan.home}/.ssh/rsa_server";
+  };
   # --- Use Cage for Kiosk Mode ---
   services.cage = {
     enable = true;
     user = "svarcade";
 
-   program = pkgs.writeShellScriptBin "kiosk-launch" ''
-      #!/usr/bin/env bash
-      # Try to update the repository, or clone it if the folder does not exist.
-      if [ -d "/home/svarcade/SVArcade-2025/.git" ]; then
-        ${pkgs.git}/bin/git -C /home/svarcade/SVArcade-2025 pull || true
-      else
-        ${pkgs.git}/bin/git clone https://github.com/bezark/SVArcade-2025.git /home/svarcade/SVArcade-2025 || true
-      fi
-      # Now launch the Godot project.
-      exec ${pkgs.godot_4}/bin/godot4 --path /home/svarcade/SVArcade-2025/
-    '';
+   # program = pkgs.writeShellScriptBin "kiosk-launch" ''
+   #    #!/usr/bin/env bash
+   #    # Try to update the repository, or clone it if the folder does not exist.
+   #    if [ -d "/home/svarcade/SVArcade-2025/.git" ]; then
+   #      ${pkgs.git}/bin/git -C /home/svarcade/SVArcade-2025 pull || true
+   #    else
+   #      ${pkgs.git}/bin/git clone https://github.com/bezark/SVArcade-2025.git /home/svarcade/SVArcade-2025 || true
+   #    fi
+   #    # Now launch the Godot project.
+   #    exec ${pkgs.godot_4}/bin/godot4 --path /home/svarcade/SVArcade-2025/
+   #  '';
 
     
-    # program = "${pkgs.godot_4}/bin/godot4 --path /home/svarcade/prisonlife/";
+    program = "${pkgs.godot_4}/bin/godot4  --path /home/svarcade/SVArcade-2025/";#/home/svarcade/SVArcade-2025/project.godot";
     #-kiosk -private-window https://www.google.com";
       # Launch a simple Wayland terminal (foot) to test Cage
   };
