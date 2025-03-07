@@ -119,6 +119,38 @@ in
     extraGroups = [ "networkmanager" "wheel" "adbusers" "audio" "dialout" "input" "video" "reneder" ];
   };
 
+
+
+  systemd.timers."hello-world" = {
+    wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "1m";
+        OnUnitActiveSec = "5m";
+        # Alternatively, if you prefer to specify an exact timestamp
+        # like one does in cron, you can use the `OnCalendar` option
+        # to specify a calendar event expression.
+        # Run every Monday at 10:00 AM in the Asia/Kolkata timezone.
+        #OnCalendar = "Mon *-*-* 10:00:00 Asia/Kolkata";
+        Unit = "hello-world.service";
+      };
+  };
+
+  systemd.services."hello-world" = {
+    script = ''
+      set -eu
+      ${pkgs.coreutils}/bin/echo "Hello World"
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
+
+
+
+
+
+
   # --- Remote Access ---
   services.openssh.enable = true;
   services.tailscale.enable = true;
