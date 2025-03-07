@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  git-update = import /home/svarcade/SVArcade-2025/update.nix {inherit pkgs}
+in
+
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -30,16 +34,16 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.self-deploy = {
-    enable = true;
+  # services.self-deploy = {
+  #   enable = true;
 
-    startAt = "hourly";
+  #   startAt = "hourly";
 
-    repository = "git@github.com:bezark/SVArcade-2025.git";
-    nixFile = "/kiosk-config.nix";
-    nixAttribute = "system";
-    # sshKeyFile = "${config.users.users.gaetan.home}/.ssh/rsa_server";
-  };
+  #   repository = "git@github.com:bezark/SVArcade-2025.git";
+  #   nixFile = "/kiosk-config.nix";
+  #   nixAttribute = "system";
+  #   # sshKeyFile = "${config.users.users.gaetan.home}/.ssh/rsa_server";
+  # };
   # --- Use Cage for Kiosk Mode ---
   services.cage = {
     enable = true;
@@ -85,6 +89,10 @@
 
   # --- System Packages ---
   environment.systemPackages = with pkgs; [
+  
+     
+    git-update
+
     # Minimal test for Cage
     firefox
 
