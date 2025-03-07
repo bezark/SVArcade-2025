@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  git-update = import /home/svarcade/SVArcade-2025/update.nix {inherit pkgs}
-in
-
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -91,11 +87,6 @@ in
   environment.systemPackages = with pkgs; [
   
      
-    git-update
-
-    # Minimal test for Cage
-    firefox
-
     # Tools you already had
     rustdesk
     tmux
