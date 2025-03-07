@@ -115,8 +115,8 @@
   systemd.timers."hello-world" = {
     wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnBootSec = "1m";
-        OnUnitActiveSec = "5m";
+        OnBootSec = "10s";
+        OnUnitActiveSec = "10s";
         # Alternatively, if you prefer to specify an exact timestamp
         # like one does in cron, you can use the `OnCalendar` option
         # to specify a calendar event expression.
@@ -130,10 +130,12 @@
     script = ''
       set -eu
       ${pkgs.coreutils}/bin/echo "Hello World"
+      cd /home/svarcade/SVArcade-2025
+      ${pkgs.git}/bin/git pull
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = "root";
+      User = "svarcade";
     };
   };
 
