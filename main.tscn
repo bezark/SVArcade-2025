@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkyl4kmpkq3ee"]
+[gd_scene load_steps=4 format=3 uid="uid://dkyl4kmpkq3ee"]
 
 [ext_resource type="Texture2D" uid="uid://ynl30e6ekt2r" path="res://icon.svg" id="1_1ar51"]
 [ext_resource type="Script" path="res://tester.gd" id="2_f43gi"]
+[ext_resource type="PackedScene" uid="uid://c4dxafbodbhn7" path="res://PCKImporter.tscn" id="3_kssei"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(923, 538)
+position = Vector2(648, 386)
 texture = ExtResource("1_1ar51")
 script = ExtResource("2_f43gi")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 416.0
+offset_top = 110.0
+offset_right = 582.0
+offset_bottom = 229.0
+text = "ARCADE"
+
+[node name="PCKImporter" parent="." instance=ExtResource("3_kssei")]
