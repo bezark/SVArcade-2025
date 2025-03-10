@@ -2,20 +2,32 @@
 
 [ext_resource type="Texture2D" uid="uid://ynl30e6ekt2r" path="res://icon.svg" id="1_1ar51"]
 [ext_resource type="Script" path="res://tester.gd" id="2_f43gi"]
-[ext_resource type="PackedScene" uid="uid://c4dxafbodbhn7" path="res://PCKImporter.tscn" id="3_kssei"]
+[ext_resource type="PackedScene" uid="uid://bwc51ug0q7ufy" path="res://Menus/GridLoader.tscn" id="3_u6jho"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(648, 386)
+position = Vector2(588, 126)
 texture = ExtResource("1_1ar51")
 script = ExtResource("2_f43gi")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 416.0
-offset_top = 110.0
-offset_right = 582.0
-offset_bottom = 229.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 149.0
+offset_top = 215.0
+offset_right = 832.0
+offset_bottom = 651.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "ARCADE"
 
-[node name="PCKImporter" parent="." instance=ExtResource("3_kssei")]
+[node name="GridLoader" parent="VBoxContainer" instance=ExtResource("3_u6jho")]
+layout_mode = 2
+size_flags_vertical = 3

@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Metagame="*res://metagame.tscn"
+Metagame="*res://Utils/metagame.tscn"
 
 [display]
 

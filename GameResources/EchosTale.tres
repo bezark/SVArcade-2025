@@ -1,7 +1,10 @@
 [gd_resource type="Resource" script_class="GameInfo" load_steps=2 format=3 uid="uid://c0uxoop3hb2yu"]
 
-[ext_resource type="Script" path="res://GameInfo.gd" id="1_ptg17"]
+[ext_resource type="Script" path="res://Classes/GameInfo.gd" id="1_ptg17"]
 
 [resource]
 script = ExtResource("1_ptg17")
-pck_file = "res://PCKs/Prison.pck"
+title = "Echo's Tale"
+authors = ""
+pck_file = "res://PCKs/Echo.pck"
+main_scene = "res://scenes/levels/Opening_Menu.tscn"

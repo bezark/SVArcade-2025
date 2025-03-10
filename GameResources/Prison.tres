@@ -1,7 +1,10 @@
 [gd_resource type="Resource" script_class="GameInfo" load_steps=2 format=3 uid="uid://dxmm3p1i647wo"]
 
-[ext_resource type="Script" path="res://GameInfo.gd" id="1_y7wt6"]
+[ext_resource type="Script" path="res://Classes/GameInfo.gd" id="1_y7wt6"]
 
 [resource]
 script = ExtResource("1_y7wt6")
-pck_file = "res://PCKs/Echo.pck"
+title = "A Day in Prison"
+authors = ""
+pck_file = "res://PCKs/Prison.pck"
+main_scene = "res://Scene/mainLevel.tscn/"
