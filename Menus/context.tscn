@@ -1,41 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://buxpeccd7mhy8"]
+[gd_scene load_steps=8 format=3 uid="uid://buxpeccd7mhy8"]
 
 [ext_resource type="Theme" uid="uid://crhkeqyi2njhw" path="res://Menus/main_menu.tres" id="1_7tij1"]
 [ext_resource type="Script" path="res://Menus/context.gd" id="1_lvb73"]
 [ext_resource type="PackedScene" uid="uid://c4dxafbodbhn7" path="res://Utils/PCKImporter.tscn" id="3_hslxy"]
-[ext_resource type="Texture2D" uid="uid://cncaai3fqv48y" path="res://Assets/INTERN/___Spring Show 3/fullBack.png" id="3_si3na"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b1joy"]
-texture = ExtResource("3_si3na")
+[ext_resource type="Texture2D" path="res://Assets/bg_camo.png" id="4_bg"]
+[ext_resource type="FontFile" path="res://Assets/ARCADE_N.TTF" id="5_arcade"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_twsnr"]
-font_size = 64
-font_color = Color(0.941176, 0.933333, 0.603922, 1)
+font = ExtResource("5_arcade")
+font_size = 56
+font_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_by"]
+font = ExtResource("5_arcade")
+font_size = 16
+font_color = Color(1, 1, 1, 0.5)
 
 [node name="Context" type="CanvasLayer"]
 script = ExtResource("1_lvb73")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+texture = ExtResource("4_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_7tij1")
-theme_override_styles/panel = SubResource("StyleBoxTexture_b1joy")
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/separation = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Title" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -43,37 +49,48 @@ label_settings = SubResource("LabelSettings_twsnr")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BY" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="BY" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+label_settings = SubResource("LabelSettings_by")
 text = "BY"
 horizontal_alignment = 1
 
-[node name="Authors" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Authors" type="Label" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "good students"
 horizontal_alignment = 1
 
-[node name="Context" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Context" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
 text = "This game was originally designed for a mouse and keyboard."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Context2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Context2" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
 text = "Use the Thumbsticks to move, A to jump and B to interact. Press + to return to the main menu."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Play" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "PLAY"
 
 [node name="PCKImporter" parent="." instance=ExtResource("3_hslxy")]
 
-[connection signal="button_down" from="PanelContainer/CenterContainer/VBoxContainer/Play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_button_down"]

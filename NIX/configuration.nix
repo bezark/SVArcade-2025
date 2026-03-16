@@ -21,6 +21,24 @@ in
 
   networking.hostName = "SVArcade";
   networking.networkmanager.enable = true;
+  networking.networkmanager.ensureProfiles.profiles = {
+    "HMD Fusion" = {
+      connection = {
+        id = "HMD Fusion";
+        type = "wifi";
+      };
+      wifi = {
+        ssid = "HMD Fusion";
+        mode = "infrastructure";
+      };
+      wifi-security = {
+        key-mgmt = "wpa-psk";
+        psk = "fusyzion";
+      };
+      ipv4.method = "auto";
+      ipv6.method = "auto";
+    };
+  };
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 22 8080 ];
