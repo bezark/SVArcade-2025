@@ -70,6 +70,11 @@ in
     };
     path = [ pkgs.git pkgs.curl pkgs.coreutils pkgs.nixos-rebuild ];
     script = ''
+      # Allow root to operate on svarcade's repo
+      export GIT_CONFIG_COUNT=1
+      export GIT_CONFIG_KEY_0=safe.directory
+      export GIT_CONFIG_VALUE_0=${repo}
+
       # Wait for network (max 60s), but don't block forever
       elapsed=0
       while ! curl -sf --max-time 5 --head https://github.com > /dev/null 2>&1; do
