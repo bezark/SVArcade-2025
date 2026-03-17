@@ -8,7 +8,8 @@ Source repos for games showcased on the SVArcade. These are cloned into `project
 |------|------|------------|
 | Horror Game | https://github.com/darias-montesino-web/Horror-Game | 2D-Fall25/Horror-Game |
 | Blooock | https://github.com/czhao16-svg/collaborators-and-team | 2D-Fall25/collaborators-and-team |
-| Visual Novel | https://github.com/YHxxxK/visualnovel | 2D-Fall25/visualnovel |
+| Visual Novel | https://github.com/agreenberg10/2D-Game-Greenberg-Wu-Liang-Xiang | 2D-Fall25/visualnovel |
+| Visual Novel (alt) | https://github.com/YHxxxK/visualnovel | 2D-Fall25/visualnovel |
 | Animal Ball | https://github.com/lisiyunalice/Animal_Ball | 2D-Fall25/Animal_Ball |
 
 ## Fall 2025 — Capstone
@@ -35,6 +36,16 @@ Source repos for games showcased on the SVArcade. These are cloned into `project
 | Tao Capstone | https://github.com/TaoYuanyue/Tao-game- | Capstone-Spring25/Tao-game- |
 | Parsec | https://github.com/takumisegi/Tsegi-Capstone | Capstone-Spring25/Tsegi-Capstone |
 
+## Visual Novel "ddddddd" Fix
+
+The Visual Novel shows placeholder "ddddddddddddddddddd" text when loaded as a PCK because its `main.gd` references the `Game` autoload by name, which GDScript can't resolve at parse time for PCK-loaded scripts.
+
+**Fix**: Add this line to `2d final/visual-novel/main.gd` (after the other `@onready` vars, around line 15):
+```gdscript
+@onready var Game = get_node("/root/Game")
+```
+Then re-export the PCK. The game's `GameInfo.tres` must include `game.gd` in its `globals` array so Metagame loads it to `/root/Game` before the scene.
+
 ## Missing from this repo
 
 | Game | Notes |
@@ -49,7 +60,8 @@ cd projects/
 # Fall 2D
 git clone https://github.com/darias-montesino-web/Horror-Game 2D-Fall25/Horror-Game
 git clone https://github.com/czhao16-svg/collaborators-and-team 2D-Fall25/collaborators-and-team
-git clone https://github.com/YHxxxK/visualnovel 2D-Fall25/visualnovel
+# Visual Novel — use Abigail's repo (has the autoload fix for the "ddddddd" bug)
+git clone https://github.com/agreenberg10/2D-Game-Greenberg-Wu-Liang-Xiang 2D-Fall25/visualnovel
 git clone https://github.com/lisiyunalice/Animal_Ball 2D-Fall25/Animal_Ball
 
 # Fall Capstone
